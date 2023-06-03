@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.green),
       color: Colors.blue,
       debugShowCheckedModeBanner: false,
-      home: HomeActivity(),
+      home: const HomeActivity(),
     );
   }
 }
@@ -30,7 +30,7 @@ class HomeActivity extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MyApp"),
+        title: const Text("MyApp"),
         titleSpacing: 10,
         toolbarHeight: 60,
         toolbarOpacity: 1,
@@ -41,33 +41,33 @@ class HomeActivity extends StatelessWidget {
               onPressed: () {
                 mySnackBar("Notification snackbar", context);
               },
-              icon: Icon(Icons.notifications)),
+              icon: const Icon(Icons.notifications)),
           IconButton(
               onPressed: () {
                 mySnackBar("Search snackbar", context);
               },
-              icon: Icon(Icons.search)),
+              icon: const Icon(Icons.search)),
           IconButton(
               onPressed: () {
                 mySnackBar("Setting snackbar", context);
               },
-              icon: Icon(Icons.settings)),
+              icon: const Icon(Icons.settings)),
           IconButton(
               onPressed: () {
                 mySnackBar("Email snackbar", context);
               },
-              icon: Icon(Icons.email))
+              icon: const Icon(Icons.email))
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           mySnackBar("Add Property", context);
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 2,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.message), label: "Contact"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Person")
@@ -88,19 +88,19 @@ class HomeActivity extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 child: UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Colors.green),
-                  accountName: Text("Md. Sabuz Khan"),
-                  accountEmail: Text("mail.sabuzkhan@gmail."),
+                  decoration: const BoxDecoration(color: Colors.green),
+                  accountName: const Text("Md. Sabuz Khan"),
+                  accountEmail: const Text("mail.sabuzkhan@gmail.com"),
                   currentAccountPicture: Image.network(
                       "https://cdn-icons-png.flaticon.com/512/219/219970.png"),
                 )),
-            ListTile(leading: Icon(Icons.home), title: Text('Home')),
-            ListTile(leading: Icon(Icons.abc), title: Text('About')),
-            ListTile(leading: Icon(Icons.phone), title: Text('Phone')),
-            ListTile(leading: Icon(Icons.email), title: Text('Email')),
-            ListTile(leading: Icon(Icons.message), title: Text('Contact'))
+            const ListTile(leading: Icon(Icons.home), title: Text('Home')),
+            const ListTile(leading: Icon(Icons.abc), title: Text('About')),
+            const ListTile(leading: Icon(Icons.phone), title: Text('Phone')),
+            const ListTile(leading: Icon(Icons.email), title: Text('Email')),
+            const ListTile(leading: Icon(Icons.message), title: Text('Contact'))
           ],
         ),
       ),
@@ -108,19 +108,19 @@ class HomeActivity extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 child: UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Colors.green),
-                  accountName: Text("Md. Sabuz Khan"),
-                  accountEmail: Text("mail.sabuzkhan@gmail."),
+                  decoration: const BoxDecoration(color: Colors.green),
+                  accountName: const Text("Md. Sabuz Khan"),
+                  accountEmail: const Text("mail.sabuzkhan@gmail.com"),
                   currentAccountPicture: Image.network(
                       "https://cdn-icons-png.flaticon.com/512/219/219970.png"),
                 )),
-            ListTile(leading: Icon(Icons.home), title: Text('Home')),
-            ListTile(leading: Icon(Icons.abc), title: Text('About')),
-            ListTile(leading: Icon(Icons.phone), title: Text('Phone')),
-            ListTile(leading: Icon(Icons.email), title: Text('Email')),
-            ListTile(leading: Icon(Icons.message), title: Text('Contact'))
+            const ListTile(leading: Icon(Icons.home), title: Text('Home')),
+            const ListTile(leading: Icon(Icons.abc), title: Text('About')),
+            const ListTile(leading: Icon(Icons.phone), title: Text('Phone')),
+            const ListTile(leading: Icon(Icons.email), title: Text('Email')),
+            const ListTile(leading: Icon(Icons.message), title: Text('Contact'))
           ],
         ),
       ),
