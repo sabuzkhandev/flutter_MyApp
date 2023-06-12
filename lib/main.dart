@@ -1,128 +1,128 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const GallaryWidgetApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GallaryWidgetApp extends StatelessWidget {
+  const GallaryWidgetApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.green),
-      color: Colors.blue,
-      debugShowCheckedModeBanner: false,
-      home: const HomeActivity(),
+      title: 'Photo Gallery',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const PhotoGallery(),
     );
   }
 }
 
-class HomeActivity extends StatelessWidget {
-  const HomeActivity({super.key});
-
-  mySnackBar(message, context) {
-    return ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
+class PhotoGallery extends StatelessWidget {
+  const PhotoGallery({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("MyApp"),
-        titleSpacing: 10,
-        toolbarHeight: 60,
-        toolbarOpacity: 1,
-        elevation: 10,
-        backgroundColor: Colors.green,
-        actions: [
-          IconButton(
-              onPressed: () {
-                mySnackBar("Notification snackbar", context);
-              },
-              icon: const Icon(Icons.notifications)),
-          IconButton(
-              onPressed: () {
-                mySnackBar("Search snackbar", context);
-              },
-              icon: const Icon(Icons.search)),
-          IconButton(
-              onPressed: () {
-                mySnackBar("Setting snackbar", context);
-              },
-              icon: const Icon(Icons.settings)),
-          IconButton(
-              onPressed: () {
-                mySnackBar("Email snackbar", context);
-              },
-              icon: const Icon(Icons.email))
-        ],
+        title: const Text('Photo Gallery'),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.all(16.0),
+              child: const Text(
+                'Welcome to My Photo Gallery!',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: const TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search for photos',
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(12.0),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            Wrap(
+              spacing: 8.0,
+              runSpacing: 8.0,
+              children: [
+                for (int i = 1; i <= 6; i++)
+                  ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Clicked on photo $i!')),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.network(
+                          'https://cdn-icons-png.flaticon.com/512/11079/11079303.png',
+                          height: 120.0,
+                          fit: BoxFit.cover,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Photo $i',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 16.0),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                ListTile(
+                  leading: Icon(Icons.photo),
+                  title: Text('Sample Photo 1'),
+                  subtitle: Text('Category 1'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.photo),
+                  title: Text('Sample Photo 2'),
+                  subtitle: Text('Category 2'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.photo),
+                  title: Text('Sample Photo 3'),
+                  subtitle: Text('Category 3'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: IconButton(
+        icon: const Icon(Icons.cloud_upload),
         onPressed: () {
-          mySnackBar("Add Property", context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Photos Uploaded Successfully!')),
+          );
         },
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: "Contact"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Person")
-        ],
-        onTap: (int index) {
-          if (index == 0) {
-            mySnackBar("Home Bottom Navbar", context);
-          }
-          if (index == 1) {
-            mySnackBar("Message Bottom Navbar", context);
-          }
-          if (index == 2) {
-            mySnackBar("Profile Bottom Navbar", context);
-          }
-        },
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-                padding: const EdgeInsets.all(0),
-                child: UserAccountsDrawerHeader(
-                  decoration: const BoxDecoration(color: Colors.green),
-                  accountName: const Text("Md. Sabuz Khan"),
-                  accountEmail: const Text("mail.sabuzkhan@gmail.com"),
-                  currentAccountPicture: Image.network(
-                      "https://cdn-icons-png.flaticon.com/512/219/219970.png"),
-                )),
-            const ListTile(leading: Icon(Icons.home), title: Text('Home')),
-            const ListTile(leading: Icon(Icons.abc), title: Text('About')),
-            const ListTile(leading: Icon(Icons.phone), title: Text('Phone')),
-            const ListTile(leading: Icon(Icons.email), title: Text('Email')),
-            const ListTile(leading: Icon(Icons.message), title: Text('Contact'))
-          ],
-        ),
-      ),
-      endDrawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-                padding: const EdgeInsets.all(0),
-                child: UserAccountsDrawerHeader(
-                  decoration: const BoxDecoration(color: Colors.green),
-                  accountName: const Text("Md. Sabuz Khan"),
-                  accountEmail: const Text("mail.sabuzkhan@gmail.com"),
-                  currentAccountPicture: Image.network(
-                      "https://cdn-icons-png.flaticon.com/512/219/219970.png"),
-                )),
-            const ListTile(leading: Icon(Icons.home), title: Text('Home')),
-            const ListTile(leading: Icon(Icons.abc), title: Text('About')),
-            const ListTile(leading: Icon(Icons.phone), title: Text('Phone')),
-            const ListTile(leading: Icon(Icons.email), title: Text('Email')),
-            const ListTile(leading: Icon(Icons.message), title: Text('Contact'))
-          ],
-        ),
       ),
     );
   }
